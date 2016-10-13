@@ -1,0 +1,14 @@
+#!/bin/sh
+path=/var/www/gasjet_neu/
+if [ -f /tmp/gnuplot ] 
+	then 	
+		echo "gnuplot läuft gerade"
+		exit 0
+	else
+		touch /tmp/gnuplot
+		/usr/bin/gnuplot $path/plot_E.druck
+		/usr/bin/gnuplot $path/plot_S.druck
+		sleep 1 
+		rm /tmp/gnuplot
+	fi
+sleep 1

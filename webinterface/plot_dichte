@@ -1,0 +1,15 @@
+#!/bin/sh
+path=/var/www/gasjet_neu/
+if [ -f /tmp/gnuplot_dichte ] 
+	then 	
+		echo "gnuplot läuft gerade"
+		exit 0
+	else
+		touch /tmp/gnuplot_dichte
+                echo $1 > /tmp/gasart
+                python $path/dichte.py $1
+		gnuplot $path/plot.tempdichte
+		sleep 1 
+		rm /tmp/gnuplot_dichte
+	fi
+sleep 1

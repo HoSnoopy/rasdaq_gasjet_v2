@@ -1,0 +1,36 @@
+set title "Druck in WWK"
+set xdata time
+set timefmt "%Y-%m-%d_%H:%M:%S"
+set term png size 1200,700
+set logscale y
+set term png
+set pointsize 0.5
+set format y "10E%+3T"
+set grid
+set xlabel "Uhr-Zeit"
+set ylabel "Druck in WWK/mBar"
+#unset log y2
+#set y2label "Temperatur/K"
+#set y2range [0:300]
+#set y2tics
+set output "/var/www/gasjet/wwk.png"
+set multiplot
+set macros
+set style line 1 lt 1 lc rgb "#0060ad" lw 2 pt 5
+set style line 2 lt 1 lc rgb "#ff0000" lw 2 pt 5
+set style line 3 lt 1 lc rgb "#00ff00" lw 2 pt 5
+set style line 4 lt 1 lc rgb "#cd6600" lw 2 pt 5
+set style line 4 lt 1 lc rgb "#cd6600" lw 2 pt 5
+set style line 5 lt 1 lc rgb "#ff1493" lw 2 pt 5
+set style line 6 lt 1 lc rgb "#8b008b" lw 2 pt 5
+set style line 7 lt 1 lc rgb "#8b6508" lw 2 pt 5
+
+BLAU="1"
+ROT="2"
+GRUEN="3"
+ORANGE="4"
+PINK="5"
+MAGENTA="6"
+BRAUN="7"
+
+plot "/var/www/gasjet-data/wwk.dat" using 1:2 title "Druck in WWK" with lines ls @BLAU

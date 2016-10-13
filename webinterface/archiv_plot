@@ -1,0 +1,13 @@
+#!/bin/sh
+datei=`more /tmp/gasjet_archiv`
+echo $datei > /tmp/gas_datei
+datei=`tail -c 31 /tmp/gas_datei`
+echo $datei > /tmp/gas_dat
+cd /var/www/gasjet-data/archive/
+cp $datei /var/www/gasjet/archiv.dat
+gnuplot /var/www/gasjet/archiv_plot.tempdichte
+gnuplot /var/www/gasjet/archiv_plot.druck
+rm /tmp/gasjet_archiv
+rm /var/www/gasjet/archiv.dat
+rm /tmp/gas_datei
+rm /tmp/gas_dat

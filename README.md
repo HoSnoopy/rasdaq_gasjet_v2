@@ -1,6 +1,6 @@
 # rasdaq (RASpberry pi Data AcQuisition)
 
-`rasdaq` is a client and server code for Raspberry Pi 2 to acquire ADC Data from [MCP8208](http://www.microchip.com/wwwproducts/en/MCP3208) 12-bit ADC converter chip. The [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus) interface is emulated using Raspberry PI's GPIO pin, the way that is described in [this tutorial](https://www.raspiprojekt.de/machen/basics/schaltungen/26-analoge-signale-mit-dem-mcp3008-verarbeiten.html). An alternative would be to use raspberry pi's processor's own SPI interface, which is not applied here in this code. The underlying messaging is accomplished using [Zero MQ](http://zeromq.org/) library in PUB/SUB mode. 
+`rasdaq` is a client and server code for Raspberry Pi 2 to acquire ADC Data from [MCP3208](http://www.microchip.com/wwwproducts/en/MCP3208) 12-bit ADC converter chip. The [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus) interface is emulated using Raspberry PI's GPIO pin, the way that is described in [this tutorial](https://www.raspiprojekt.de/machen/basics/schaltungen/26-analoge-signale-mit-dem-mcp3008-verarbeiten.html). An alternative would be to use raspberry pi's processor's own SPI interface, which is not applied here in this code. The underlying messaging is accomplished using [Zero MQ](http://zeromq.org/) library in PUB/SUB mode. 
 
 The code consists of a separate parts:
  
