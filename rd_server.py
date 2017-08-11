@@ -10,6 +10,7 @@ import datetime
 import math
 import sys
 import zmq
+import os
 
 # Temperatursensor 
 #TC        = 2.000 # max 20K bei 10V
@@ -25,6 +26,7 @@ spi = spidev.SpiDev()
 # Frequenz des SPI-Busses. Maximal 5000000, geht man drueber, kommen unsinnige Werte heraus.
 
 datei = '/opt/data/gasjet_neu.dat'
+archiv = '/opt/data/archive/'
 herz = 1000
 warte = 0.9
 
@@ -47,7 +49,6 @@ def eformat(f, prec, exp_digits):
     mantissa, exp = s.split('e')
     # add 1 to digits as 1 is taken by sign +/-
     return "%se%+0*d" % (mantissa, exp_digits + 1, int(exp))
-
 
 # umrechnen der Spannung in einen Druckwert
 def ionivac(wert):
@@ -82,6 +83,9 @@ def edruck(wert):
     return (p)
 
 while True:
+   ts = time.time()
+   uhrzeit = str(datetime.datetime.fromtimestamp(ts).strftime('%H:%M:%S'))
+   if uhrzeit <> '23:59:59':  #schreibe in aktuelle datei bis der Tag vorbei ist
     try:
         zeile = []
         for s in range(2):
@@ -136,3 +140,10 @@ while True:
     except (KeyboardInterrupt, SystemExit):
         # except:
         break
+   else:  #lege am Ende des Tages neue Datei und verschiebe die "alte" ins Archiv
+    ts = time.time()
+    dateizeit = str(datetime.datetime.fromtimestamp(ts).strftime('%Y_%m-%d-%H_%M_%S'))
+    archivname = (archiv + 'gasjet-' + dateizeit + '.dat')
+    os.rename(datei, archivname)
+    dat = open(datei, 'w')
+    dat.close
