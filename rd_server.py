@@ -21,6 +21,7 @@ TC         = 30.0 # max 300K bei 10V
 # Einlaßdrucksensor
 PE         = 10.0 #max. 100Bar bei 10V
 
+
 spi = spidev.SpiDev()
 
 # Frequenz des SPI-Busses. Maximal 5000000, geht man drueber, kommen unsinnige Werte heraus.
@@ -29,6 +30,13 @@ datei = '/opt/data/gasjet_neu.dat'
 archiv = '/opt/data/archive/'
 herz = 1000
 warte = 0.9
+
+if os.path.isfile(datei) == True: 
+    ts = time.time()
+    dateizeit = str(datetime.datetime.fromtimestamp(ts).strftime('%Y_%m-%d-%H_%M_%S'))
+    archivname = (archiv + 'gasjet-' + dateizeit + '.dat')
+    os.rename(datei, archivname)
+   
 
 dat = open(datei, 'w')
 dat.close
@@ -85,12 +93,12 @@ def edruck(wert):
 while True:
    ts = time.time()
    uhrzeit = str(datetime.datetime.fromtimestamp(ts).strftime('%H:%M:%S'))
-   if uhrzeit <> '23:59:59':  #schreibe in aktuelle datei bis der Tag vorbei ist
+   if (uhrzeit in "23:59:59") == False:  #schreibe in aktuelle datei bis der Tag vorbei ist
     try:
         zeile = []
         for s in range(2):
             spi.open(0, s)  # oeffnen des einen oder anderen MCP3208
-#            spi.max_speed_hz = (herz)
+            spi.max_speed_hz = (herz)
             for c in range(8):
                 # Bestimmung des Kommandos zum Empfangen der einzelnen Kanaele. Siehe dazu auch https://github.com/xaratustrah/rasdaq
                 if c < 4:
@@ -144,6 +152,8 @@ while True:
     ts = time.time()
     dateizeit = str(datetime.datetime.fromtimestamp(ts).strftime('%Y_%m-%d-%H_%M_%S'))
     archivname = (archiv + 'gasjet-' + dateizeit + '.dat')
-    os.rename(datei, archivname)
+    mvbefehl = ('mv ' + datei + ' ' + archivname)
+#    os.rename(datei, archivname)
+    os.system(mvbefehl)
     dat = open(datei, 'w')
     dat.close

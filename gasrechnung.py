@@ -36,7 +36,7 @@ class Wasserstoff(Gas):
         self.m = 2.016 / 6.02214129e26
         self.X = 1.4054
         self.korr = 2.4
-        self.saug = 1100
+        self.saug = 580
 
 class Deuterium(Gas):
     def __init__(self):
@@ -44,7 +44,7 @@ class Deuterium(Gas):
         self.m = 4.0282/ 6.02214129e26
         self.X = 1.3981
         self.korr = 2.4
-        self.saug = 1100
+        self.saug = 580
 
 class Helium(Gas):
     def __init__(self):
@@ -52,7 +52,7 @@ class Helium(Gas):
         self.m = 4.002602 / 6.02214129e26
         self.X = 1.63
         self.korr = 5.7
-        self.saug = 1320
+        self.saug = 700
 
 
 class Neon(Gas):
@@ -61,7 +61,7 @@ class Neon(Gas):
         self.m = 20.179 / 6.02214129e26
         self.X = 1.6669
         self.korr = 3.8
-        self.saug = 1000
+        self.saug = 600
 
 
 class Argon(Gas):
@@ -70,7 +70,7 @@ class Argon(Gas):
         self.m = 39.948 / 6.02214129e26
         self.X = 1.6696
         self.korr = 0.8
-        self.saug = 1000
+        self.saug = 780
 
 
 class Krypton(Gas):
@@ -79,7 +79,7 @@ class Krypton(Gas):
         self.m = 83.798 / 6.02214129e26
         self.X = 1.6722
         self.korr = 0.5
-        self.saug = 850
+        self.saug = 500
 
 
 class Xenon(Gas):
@@ -88,7 +88,7 @@ class Xenon(Gas):
         self.m = 131.293 / 6.02214129e26
         self.X = 1.6773
         self.korr = 0.4
-        self.saug = 850
+        self.saug = 500
 
 
 class Stickstoff(Gas):
@@ -97,4 +97,4 @@ class Stickstoff(Gas):
         self.m = 28.0134 / 6.02214129e26
         self.X = 1.4013
         self.korr = 1
-        self.saug = 1320
+        self.saug = 790
