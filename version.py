@@ -1,3 +1,4 @@
+#coding: utf-8
 """
 Anzeige für Jetdichte am Internen Gastarget der GSI
 

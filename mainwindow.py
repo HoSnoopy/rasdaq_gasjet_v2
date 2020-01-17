@@ -1,3 +1,4 @@
+#coding: utf-8
 """
 A client/server code for Raspberry Pi ADC input
 
